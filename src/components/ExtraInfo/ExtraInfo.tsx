@@ -3,38 +3,43 @@ import s from "./ExtraInfo.module.scss";
 import cloud from "../../assets/images/cloud.png";
 import { Item } from "../../tipes";
 import { ExtraInfoList } from "./ExtraInfoList";
-import { useWeatherDay } from "../../hooks/useWeatherDay";
+import { useWeather } from "../../hooks/useWeather";
 
 
 export const ExtraInfo: React.FC = React.memo(() => {
-  const { weather } = useWeatherDay();
+  const { weatherHour, id } = useWeather();
 
-
+  console.log(id, 'ExtraInfo');
 
   const items = React.useMemo(
     () => [
       {
         icon_id: "temp",
-        name: "Макс температура",
-        value: `${weather.maxtemp}°`,
+        name: "Tемпература",
+        value: `${weatherHour.temp}°`,
       },
       {
         icon_id: "pressure",
-        name: "Влажность ",
-        value: `${weather.totalprecip}%`,
+        name: "Давление ",
+        value: `${weatherHour.pressure}м.б`,
       },
       {
-        icon_id: "precipitation",
+        icon_id: "humidity",
         name: "Осадки",
-        value: `${weather.avghumidity}мм` ,
+        value: `${weatherHour.humidity}%`,
       },
       {
         icon_id: "wind",
         name: "Ветер",
-        value: `${weather.avghumidity}к/ч`,
+        value: `${weatherHour.wind_mph}м/с`,
+      },
+      {
+        icon_id: "compass",
+        name: "Направление",
+        value: weatherHour.wind_dir,
       },
     ],
-    [weather]
+    [weatherHour]
   );
 
   return (

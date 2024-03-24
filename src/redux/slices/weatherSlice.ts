@@ -4,11 +4,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 type weatherSliceTypes = {
   data: any,
-  curentDay: any,
+  weatherInfo: any,
   payloadDays: number[],
   citysList: CitysList[],
-  filter: number;
+  filter: number,
   week: Week,
+  hId: number,
   isLoading: 'idle' | 'loaded' | 'loading' | 'error'
 }
 
@@ -33,11 +34,12 @@ const week = {
 
 const initialState: weatherSliceTypes = {
   data: [],
-  curentDay: null,
+  weatherInfo: null,
   payloadDays: [],
   filter: Number(),
   citysList: [{ value: "city-1", label: "Новороссийск" }, { value: "city-2", label: "Сочи" }],
   week,
+  hId: 0,
   isLoading: "idle",
 }
 
@@ -53,26 +55,29 @@ export const weatherSlice = createSlice({
       state.citysList.push({ value: `city-${citysListLength}`, label: action.payload })
     },
     setCurentDay: (state, action) => {
-      state.curentDay = action.payload
+      state.weatherInfo = action.payload
     },
+    changeId: (state, action) => {
+      state.hId = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
       ///fetchFindByName
       .addCase(fetchFindByName.pending, (state) => {
         state.data = [];
-        state.curentDay = null;
+        state.weatherInfo = null;
         state.isLoading = "loading";
       })
       .addCase(fetchFindByName.fulfilled, (state, action) => {
         console.log(action.payload, 'fetchFindByName');
         state.data = action.payload;
-        state.curentDay = action.payload.forecast.forecastday[0];
+        state.weatherInfo = action.payload.forecast.forecastday[0];
         state.isLoading = "loaded";
       })
       .addCase(fetchFindByName.rejected, (state) => {
         state.data = [];
-        state.curentDay = null;
+        state.weatherInfo = null;
         state.isLoading = "loading";
       })
   }
