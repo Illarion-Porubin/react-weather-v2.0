@@ -3,32 +3,38 @@ import s from "./Card.module.scss";
 import { useCustomDispatch, useCustomSelector } from "../../hooks/store";
 import { selectWeatherData } from "../../redux/selectors";
 import { weatherSlice } from "../../redux/slices/weatherSlice";
+import { DayInfoTypes } from "../../tipes";
 
 interface Props {
-  dayInfo: any;
+  dayInfo: DayInfoTypes
 }
+
 
 export const Card: React.FC<Props> = React.memo(({ dayInfo }) => {
   const dispatch = useCustomDispatch();
-  const data = useCustomSelector(selectWeatherData);
-  const tyme = new Date(dayInfo.date_epoch * 1000);
-  const dayWeek = data.week[String(tyme).slice(0, 3)];
-  const icon = `https://${dayInfo.day.condition.icon}`;
-  const temp = Math.round(dayInfo.day.maxtemp_c);
-  const chanceOfRain = dayInfo.day.daily_chance_of_rain;
+  const { week } = useCustomSelector(selectWeatherData);
+  const checkWeek: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun" = Object(`${new Date(dayInfo.date_epoch * 1000)}`).slice(0, 3);
 
   return (
     <article
       className={s.card}
-      onClick={() => dispatch(weatherSlice.actions.setCurentDay(dayInfo))}
+      onClick={() => dispatch(weatherSlice.actions.setWeatherInfo(dayInfo))}
     >
       <div className={s.curentDay}>
-        {dayInfo.date.slice(-2)} <span>{dayWeek}</span>
+        {dayInfo.date.slice(-2)}{" "}
+        <span>
+          {week[checkWeek]}
+        </span>
       </div>
-      <span className={s.temp__day}>{temp}°</span>
-      <img className={s.img} src={icon} alt="icon" />
-      <div className={s.temp__night}></div>
-      <div className={s.info}>Вероятность дождя {chanceOfRain}%</div>
+      <span className={s.temp}>{Math.round(dayInfo.day.maxtemp_c)}°</span>
+      <img
+        className={s.img}
+        src={`https://${dayInfo.day.condition.icon}`}
+        alt="icon"
+      />
+      <div className={s.info}>
+        Вероятность дождя {dayInfo.day.daily_chance_of_rain}%
+      </div>
     </article>
   );
 });

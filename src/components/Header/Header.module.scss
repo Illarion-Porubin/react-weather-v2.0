@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
 .header {
   display: flex;
@@ -9,15 +9,15 @@
 }
 
 .wrapper,
-.wrapper__logo {
+.wrapperLogo {
   display: flex;
   align-items: center;
 }
 
-.change_theme,
-.logo {
-  margin-right: 20px;
+.logo,
+.changeTheme {
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .logo {
@@ -34,14 +34,14 @@
   color: var(#{--text-color-default});
 }
 
-.input__wrapp{
+.inputWrapp {
   display: flex;
   position: relative;
-  max-width: 226px;
+  max-width: 220px;
   margin-right: 10px;
 }
 
-.input__btn{
+.inputBtn {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -58,11 +58,7 @@
   cursor: pointer;
 }
 
-.input__btnActive{
-  background: rgb(58 178 58);
-}
-
-.input{
+.input {
   outline: none;
   font-weight: 400;
   padding-left: 10px;
@@ -75,33 +71,17 @@
   padding-left: 4px;
   padding-right: 50px;
   &::-webkit-input-placeholder {
-    color: var(#{--text-color-default})
+    color: var(#{--text-color-default});
   }
 }
 
-
-@media(max-width: 810px) {
-  .wrapper {
-    display: block;
-  }
-  .change_theme {
-    position: absolute;
-    right: 230px;
-    z-index: 5;
-  }
-  .input__wrapp{
-    margin-bottom: 4px;
-    margin-right: 0;
-  }
-}
-
-@media(max-width: 560px) {
+@media (max-width: 560px) {
   .title {
     display: none;
   }
 }
 
-@media(max-width: 380px ) {
+@media (max-width: 420px) {
   .logo {
     display: none;
   }

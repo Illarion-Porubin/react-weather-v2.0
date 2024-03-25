@@ -11,21 +11,22 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { DayInfoTypes } from "../../tipes";
 
 export const CardList: React.FC = React.memo(() => {
   const { isLoading, data } = useCustomSelector(selectWeatherData);
   const dispatch = useCustomDispatch();
 
-  
   React.useEffect(() => {
-    if(isLoading === "loaded" && data.curentDay === null){
-      dispatch(weatherSlice.actions.setCurentDay(data.forecast.forecastday[0]))
+    if (isLoading === "loaded" && data.curentDay === null) {
+      dispatch(
+        weatherSlice.actions.setWeatherInfo(data.forecast.forecastday[0])
+      );
     }
-  }, []);
+  }, [data, dispatch, isLoading]);
 
-  if (isLoading === "loaded")
+  const fakeArray = new Array(10).fill(" ");
 
-  
     return (
       <>
         <Swiper
@@ -40,42 +41,41 @@ export const CardList: React.FC = React.memo(() => {
           navigation
           breakpoints={{
             1180: {
-              width: 1180,
               slidesPerView: 7,
             },
             980: {
-              width: 980,
               slidesPerView: 6,
             },
-            780: {
-              width: 780,
+            800: {
               slidesPerView: 5,
             },
             680: {
-              width: 680,
               slidesPerView: 4,
             },
             580: {
-              width: 580,
               slidesPerView: 3,
             },
             340: {
-              width: 340,
               slidesPerView: 2,
             },
-            260: {
-              width: 290,
+            100: {
               slidesPerView: 1,
             },
           }}
         >
-          {data.forecast.forecastday.map((dayInfo: any, id: number) => (
-            <SwiperSlide key={id}>
-              <div className={s.days} key={id}>
-                <Card dayInfo={dayInfo} key={id} />
-              </div>
-            </SwiperSlide>
-          ))}
+          {data.forecast
+            ? data.forecast.forecastday.map((dayInfo: DayInfoTypes, id: number) => (
+                <SwiperSlide key={id}>
+                  <div className={s.days} key={id}>
+                    <Card dayInfo={dayInfo} key={id} />
+                  </div>
+                </SwiperSlide>
+              ))
+            : fakeArray.map((_, id: number) => (
+                <SwiperSlide key={id}>
+                  <div className={s.skelet} key={id}></div>
+                </SwiperSlide>
+              ))}
         </Swiper>
       </>
     );

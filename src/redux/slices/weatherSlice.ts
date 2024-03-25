@@ -1,28 +1,39 @@
 import axios from 'axios';
-import { CitysList, Week } from '../../tipes';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { DataTypes, DayInfoTypes, WeekTypes } from '../../tipes';
+
+
 
 type weatherSliceTypes = {
-  data: any,
-  weatherInfo: any,
+  data: DataTypes | [],
+  weatherInfo: DayInfoTypes | null,
   payloadDays: number[],
-  citysList: CitysList[],
   filter: number,
-  week: Week,
-  hId: number,
+  week: WeekTypes,
   isLoading: 'idle' | 'loaded' | 'loading' | 'error'
 }
 
-export const fetchFindByName = createAsyncThunk<any, void, { rejectValue: string }
->("api/findByName", async (_, { rejectWithValue }) => {
-  const {data} = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=258cd37c6560484eafb182142242103&q=Novorossiysk&days=5&aqi=no&alerts=no`);
-  if (!data) {
-    rejectWithValue("error fetchFindByName")
+export const fetchFindCity = createAsyncThunk<DataTypes, void | string, { rejectValue: string }
+>("api/findByName", async (value, { rejectWithValue }) => {
+  if (value) {
+    const { data } = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=258cd37c6560484eafb182142242103&q=${value}&days=10&aqi=no&alerts=no`);
+    if (!data) {
+      rejectWithValue("error fetchFindCity")
+    }
+    return data
   }
-  return data
+  else {
+    const { data } = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=258cd37c6560484eafb182142242103&q=Новороссийск&days=10&aqi=no&alerts=no`);
+    if (!data) {
+      rejectWithValue("error fetchFindCity")
+    }
+    console.log(data, 'fetchFindCity');
+    return data
+  }
 })
 
-const week = {
+
+const week: WeekTypes = {
   Mon: "ПН",
   Tue: "ВТ",
   Wed: "СР",
@@ -37,9 +48,7 @@ const initialState: weatherSliceTypes = {
   weatherInfo: null,
   payloadDays: [],
   filter: Number(),
-  citysList: [{ value: "city-1", label: "Новороссийск" }, { value: "city-2", label: "Сочи" }],
   week,
-  hId: 0,
   isLoading: "idle",
 }
 
@@ -50,32 +59,24 @@ export const weatherSlice = createSlice({
     filter(state, action) {
       state.filter = action.payload
     },
-    addCity(state, action) {
-      const citysListLength = state.citysList.length + 1
-      state.citysList.push({ value: `city-${citysListLength}`, label: action.payload })
-    },
-    setCurentDay: (state, action) => {
+    setWeatherInfo: (state, action) => {
       state.weatherInfo = action.payload
     },
-    changeId: (state, action) => {
-      state.hId = action.payload
-    }
   },
   extraReducers: (builder) => {
     builder
-      ///fetchFindByName
-      .addCase(fetchFindByName.pending, (state) => {
+      ///fetchFindCity
+      .addCase(fetchFindCity.pending, (state) => {
         state.data = [];
         state.weatherInfo = null;
         state.isLoading = "loading";
       })
-      .addCase(fetchFindByName.fulfilled, (state, action) => {
-        console.log(action.payload, 'fetchFindByName');
+      .addCase(fetchFindCity.fulfilled, (state, action) => {
         state.data = action.payload;
         state.weatherInfo = action.payload.forecast.forecastday[0];
         state.isLoading = "loaded";
       })
-      .addCase(fetchFindByName.rejected, (state) => {
+      .addCase(fetchFindCity.rejected, (state) => {
         state.data = [];
         state.weatherInfo = null;
         state.isLoading = "loading";

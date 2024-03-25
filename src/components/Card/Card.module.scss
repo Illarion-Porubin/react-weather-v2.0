@@ -14,6 +14,15 @@
   }
 }
 
+.skelet{
+  margin: 14px;
+  width: 140px;
+  height: 212px;
+  background: var(#{--card-background-default});
+  border-radius: 10px;
+  padding: 10px;
+}
+
 .card {
   position: relative;
   display: flex;
@@ -37,35 +46,16 @@
     font-size: 20px;
     line-height: 22px;
     margin-bottom: 4px;
+    color: #fff;
   }
 
-  .temp__night {
-    font-size: 13px;
-    line-height: 16px;
-    margin-bottom: 6px;
-    color: $base-color;
-  }
-
-  .temp__day {
+  .temp {
     font-size: 24px;
     line-height: 28px;
     color: var(#{--text-color-default});
     position: absolute;
     top: 60px;
     right: 10px;
-  }
-
-  .day__info {
-    font-size: 18px;
-    line-height: 22px;
-    color: $base-color;
-  }
-
-  .day {
-    margin-bottom: 8px;
-    font-size: 18px;
-    line-height: 22px;
-    color: $base-color;
   }
 
   .img {
