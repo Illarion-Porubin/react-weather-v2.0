@@ -18,9 +18,9 @@ export const CardList: React.FC = React.memo(() => {
   const dispatch = useCustomDispatch();
 
   React.useEffect(() => {
-    if (isLoading === "loaded" && data.curentDay === null) {
+    if (isLoading === "loaded") {
       dispatch(
-        weatherSlice.actions.setWeatherInfo(data.forecast.forecastday[0])
+        weatherSlice.actions.setWeatherInfo(data?.forecast?.forecastday[0])
       );
     }
   }, [data, dispatch, isLoading]);
@@ -63,7 +63,7 @@ export const CardList: React.FC = React.memo(() => {
             },
           }}
         >
-          {data.forecast
+          {data?.forecast
             ? data.forecast.forecastday.map((dayInfo: DayInfoTypes, id: number) => (
                 <SwiperSlide key={id}>
                   <div className={s.days} key={id}>

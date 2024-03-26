@@ -58,23 +58,6 @@
   cursor: pointer;
 }
 
-.input {
-  outline: none;
-  font-weight: 400;
-  padding-left: 10px;
-  height: 38px;
-  width: 100%;
-  size: 25px;
-  background: var(#{--components-background-default});
-  border: 1px solid var(#{--text-color-default});
-  border-radius: 4px;
-  padding-left: 4px;
-  padding-right: 50px;
-  &::-webkit-input-placeholder {
-    color: var(#{--text-color-default});
-  }
-}
-
 @media (max-width: 560px) {
   .title {
     display: none;

@@ -5,6 +5,7 @@ import { useTheme } from "../../hooks/useTheme";
 import { Theme } from "../../context/ThemeConext";
 import { useCustomDispatch } from "../../hooks/store";
 import { fetchFindCity } from "../../redux/slices/weatherSlice";
+import { CustomInput } from "../../UI/input/customInput";
 
 interface Props {}
 
@@ -35,13 +36,7 @@ export const Header: FC<Props> = memo(() => {
           <GlobalSvgSelecotr id="change-theme" />
         </div>
         <div className={s.inputWrapp}>
-          <input
-            className={s.input}
-            value={value}
-            placeholder="Введите город"
-            type="text"
-            onChange={onChange}
-          />
+          <CustomInput onChange={onChange} value={value}/>
           <button className={s.inputBtn} onClick={() => dispatch(fetchFindCity(value))}>Add</button>
         </div>
       </div>

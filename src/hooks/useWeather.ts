@@ -18,17 +18,16 @@ interface WeatherHourTypes {
   pressure: number;
   humidity: number;
   wind_mph: number;
-  hourList: string[]
+  hourList: { value: number, label: string }[]
 }
 
 export const useWeather = () => {
   const { weatherInfo, week } = useCustomSelector(selectWeatherData);
   const [id, setId] = React.useState(0);
-
-  console.log(weatherInfo);
+  const checkWeek: "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun" = weatherInfo ? Object(`${new Date(weatherInfo.date_epoch * 1000)}`).slice(0, 3) : "Mon";
 
   const weatherHour: WeatherHourTypes = {
-    hourList: weatherInfo ? weatherInfo.hour.map((hour: { time: string[] }, id: number) => {
+    hourList: weatherInfo ? weatherInfo.hour.map((hour, id: number) => {
       return { value: id, label: hour.time.slice(-5) }
     }) : [{ value: 0, label: 'задать время' }],
 
@@ -44,7 +43,7 @@ export const useWeather = () => {
     sunrise: weatherInfo ? String(weatherInfo.astro.sunrise) : `0`,
     sunset: weatherInfo ? String(weatherInfo.astro.sunset) : `0`,
     dayOfWeek: weatherInfo ? String(weatherInfo.date.slice(-2)) : '',
-    dayOfMonth: weatherInfo ? week[String(new Date(weatherInfo.date_epoch * 1000)).slice(0, 3)] : '',
+    dayOfMonth: weatherInfo ? week[checkWeek] : '',
     avgtemp: Math.round(weatherInfo ? weatherInfo.day.avgtemp_c : 0),
     avgvis: Math.round(weatherInfo ? weatherInfo?.day.avgvis_km : 0),
   };

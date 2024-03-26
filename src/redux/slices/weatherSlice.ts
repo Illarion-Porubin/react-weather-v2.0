@@ -5,7 +5,7 @@ import { DataTypes, DayInfoTypes, WeekTypes } from '../../tipes';
 
 
 type weatherSliceTypes = {
-  data: DataTypes | [],
+  data: DataTypes | null,
   weatherInfo: DayInfoTypes | null,
   payloadDays: number[],
   filter: number,
@@ -27,7 +27,6 @@ export const fetchFindCity = createAsyncThunk<DataTypes, void | string, { reject
     if (!data) {
       rejectWithValue("error fetchFindCity")
     }
-    console.log(data, 'fetchFindCity');
     return data
   }
 })
@@ -44,7 +43,7 @@ const week: WeekTypes = {
 }
 
 const initialState: weatherSliceTypes = {
-  data: [],
+  data: null,
   weatherInfo: null,
   payloadDays: [],
   filter: Number(),
@@ -67,7 +66,7 @@ export const weatherSlice = createSlice({
     builder
       ///fetchFindCity
       .addCase(fetchFindCity.pending, (state) => {
-        state.data = [];
+        state.data = null;
         state.weatherInfo = null;
         state.isLoading = "loading";
       })
@@ -77,7 +76,7 @@ export const weatherSlice = createSlice({
         state.isLoading = "loaded";
       })
       .addCase(fetchFindCity.rejected, (state) => {
-        state.data = [];
+        state.data = null;
         state.weatherInfo = null;
         state.isLoading = "loading";
       })

@@ -28,10 +28,10 @@ export const MainInfo: React.FC = React.memo(() => {
             Закат: <span>{weatherDay.sunset}</span>
           </p>
           <p className={s.thisInfo}>
-            Страна: <span>{data.location?.country}</span>
+            Страна: <span>{data?.location?.country}</span>
           </p>
           <p className={s.thisInfo}>
-            Город: <span>{data.location?.name}</span>
+            Город: <span>{data?.location?.name}</span>
           </p>
         </div>
       </div>

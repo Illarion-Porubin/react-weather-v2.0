@@ -2,11 +2,11 @@ import React from "react";
 import s from "./ExtraInfo.module.scss";
 import cloud from "../../assets/images/cloud.png";
 import Select, { GroupBase, SingleValue, StylesConfig } from "react-select";
-import { WeatherInfoTypes } from "../../tipes";
 import { ExtraInfoList } from "./ExtraInfoList";
 import { useWeather } from "../../hooks/useWeather";
 import { useTheme } from "../../hooks/useTheme";
 import { Theme } from "../../context/ThemeConext";
+import { WeatherInfoTypes } from "../../tipes";
 
 export const ExtraInfo: React.FC = React.memo(() => {
   const { weatherHour, setId } = useWeather();
@@ -43,8 +43,8 @@ export const ExtraInfo: React.FC = React.memo(() => {
     [weatherHour]
   );
 
-  const setHour = (e: { value: string; label: string }) => {
-    setId(~~e.value);
+  const setHour = (value: number | undefined) => {
+    if(value)setId(~~value);
   };
 
   const customStyles: object = {
@@ -89,6 +89,7 @@ export const ExtraInfo: React.FC = React.memo(() => {
     }),
   };
 
+
   return (
     <div className={s.extrainfo}>
       <div className={s.extrainfoContent}>
@@ -96,9 +97,9 @@ export const ExtraInfo: React.FC = React.memo(() => {
           <Select
             className={s.selectTime}
             styles={customStyles}
-            defaultValue={weatherHour.hourList[0]}
-            options={weatherHour.hourList}
-            onChange={(e: SingleValue<string>) => setHour(e)}
+            defaultValue={weatherHour?.hourList[0]}
+            options={weatherHour?.hourList }
+            onChange={(e: SingleValue<{value: number | undefined; label: string}>) => setHour(e?.value)}
           />
         </div>
         {weatherInfo.map((item: WeatherInfoTypes, index: number) => (
