@@ -1,4 +1,4 @@
-import React, { FC, useState, memo, useCallback } from "react";
+import React from "react";
 import s from "./Header.module.scss";
 import { GlobalSvgSelecotr } from "../../assets/icons/global/GlobalSvgSelecotr";
 import { useTheme } from "../../hooks/useTheme";
@@ -9,19 +9,17 @@ import { CustomInput } from "../../UI/input/customInput";
 
 interface Props {}
 
-export const Header: FC<Props> = memo(() => {
-  const [value, setValue] = useState<string>(``);
+export const Header: React.FC<Props> = React.memo(() => {
   const dispatch = useCustomDispatch();
   const theme = useTheme();
 
-  const changeTheme = useCallback((): void => {
+  const changeTheme = React.useCallback((): void => {
     theme.changeTheme(theme.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
   }, [theme]);
 
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  }, []);
-
+  const findCity = (value: string) => {
+    dispatch(fetchFindCity(value));
+  };
 
   return (
     <header className={s.header}>
@@ -35,10 +33,7 @@ export const Header: FC<Props> = memo(() => {
         <div className={s.changeTheme} onClick={changeTheme}>
           <GlobalSvgSelecotr id="change-theme" />
         </div>
-        <div className={s.inputWrapp}>
-          <CustomInput onChange={onChange} value={value}/>
-          <button className={s.inputBtn} onClick={() => dispatch(fetchFindCity(value))}>Add</button>
-        </div>
+        <CustomInput callback={findCity} />
       </div>
     </header>
   );
