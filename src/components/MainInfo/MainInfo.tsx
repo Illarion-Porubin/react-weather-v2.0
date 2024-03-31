@@ -7,6 +7,7 @@ import { useWeather } from "../../hooks/useWeather";
 export const MainInfo: React.FC = React.memo(() => {
   const { data } = useCustomSelector(selectWeatherData);
   const { weatherDay } = useWeather();
+  const curentDate = weatherDay.date ? weatherDay.date[0] + "-" + weatherDay.date[1] + "-" + weatherDay.date[2] : '';
 
     return (
       <div className={s.thisDay}>
@@ -16,11 +17,14 @@ export const MainInfo: React.FC = React.memo(() => {
               <span>{weatherDay.maxtemp}°</span>
             </div>
             <div className={s.thisDayName}>
-              Сегодня {weatherDay.dayOfWeek} {weatherDay.dayOfMonth}
+              {weatherDay.dayOfWeek} {weatherDay.dayOfMonth}
             </div>
           </div>
         </div>
         <div className={s.bottomBlock}>
+          <p className={s.thisInfo}>
+            Дата: <span>{curentDate}</span>
+          </p>
           <p className={s.thisInfo}>
             Восход: <span>{weatherDay.sunrise}</span>
           </p>

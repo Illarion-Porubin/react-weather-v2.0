@@ -11,10 +11,8 @@
 }
 
 .selectTimeWrap{
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  right: 10px;
 }
 
 .item {
@@ -78,6 +76,15 @@
     max-width: 100%;
   }
 }
+
+@media(max-width: 800px ) {
+  .selectTimeWrap{
+    position: relative;
+    right: 0;
+    margin-bottom: 20px;
+  }
+}
+
 
 @media(max-width: 440px ) {
   .item {

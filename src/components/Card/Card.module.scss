@@ -41,9 +41,15 @@
     line-height: 16px;
     color: $base-color;
   }
+  .tt{
+    position: absolute;
+    top: 8px;
+  }
 
   .curentDay {
-    font-size: 20px;
+    position: absolute;
+    top: 30px;
+    font-size: 18px;
     line-height: 22px;
     margin-bottom: 4px;
     color: var(#{--text-color-default});
@@ -58,11 +64,13 @@
     right: 10px;
   }
 
-  .img {
+  .weatherImg {
+    position: relative;
     width: 60px;
     height: 60px;
-    margin-bottom: 12px;
+    top: 50px;
     margin: 0 auto;
+    margin-bottom: 60px;
   }
 
   &:hover {

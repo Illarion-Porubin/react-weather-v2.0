@@ -98,7 +98,7 @@ export const ExtraInfo: React.FC = React.memo(() => {
             className={s.selectTime}
             styles={customStyles}
             defaultValue={weatherHour?.hourList[0]}
-            options={weatherHour?.hourList }
+            options={weatherHour?.hourList}
             onChange={(e: SingleValue<{value: number | undefined; label: string}>) => setHour(e?.value)}
           />
         </div>

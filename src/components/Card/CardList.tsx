@@ -52,10 +52,10 @@ export const CardList: React.FC = React.memo(() => {
             680: {
               slidesPerView: 4,
             },
-            580: {
+            520: {
               slidesPerView: 3,
             },
-            340: {
+            380: {
               slidesPerView: 2,
             },
             100: {

@@ -5,7 +5,8 @@ import React from "react";
 interface WeatherDayTypes {
   sunrise: string;
   sunset: string;
-  dayOfWeek?: string;
+  dayOfWeek?: number;
+  date?: string[];
   dayOfMonth?: string;
   avgtemp?: number;
   maxtemp?: number;
@@ -42,7 +43,8 @@ export const useWeather = () => {
     maxtemp: Math.round(weatherInfo ? weatherInfo?.day.maxtemp_c : 0),
     sunrise: weatherInfo ? String(weatherInfo.astro.sunrise) : `0`,
     sunset: weatherInfo ? String(weatherInfo.astro.sunset) : `0`,
-    dayOfWeek: weatherInfo ? String(weatherInfo.date.slice(-2)) : '',
+    dayOfWeek: weatherInfo ? Number(weatherInfo.date.slice(-2)) : 0,
+    date: weatherInfo ? weatherInfo.date.split("-").reverse() : [' ',' ',' '],
     dayOfMonth: weatherInfo ? week[checkWeek] : '',
     avgtemp: Math.round(weatherInfo ? weatherInfo.day.avgtemp_c : 0),
     avgvis: Math.round(weatherInfo ? weatherInfo?.day.avgvis_km : 0),
