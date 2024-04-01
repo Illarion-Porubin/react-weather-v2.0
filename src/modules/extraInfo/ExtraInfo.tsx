@@ -1,8 +1,7 @@
 import React from "react";
 import s from "./ExtraInfo.module.scss";
-import cloud from "../../assets/images/cloud.png";
 import Select, { GroupBase, SingleValue, StylesConfig } from "react-select";
-import { ExtraInfoList } from "./ExtraInfoList";
+import { ExtraInfoDesc } from "../../components/extraInfoDesc/ExtraInfoDesc";
 import { useWeather } from "../../hooks/useWeather";
 import { useTheme } from "../../hooks/useTheme";
 import { Theme } from "../../context/ThemeConext";
@@ -63,8 +62,8 @@ export const ExtraInfo: React.FC = React.memo(() => {
     ) => ({
       ...styles,
       borderRadius: "4px",
-      backgroundColor: theme.theme === Theme.DARK ? "#4F4F4F" : "#fff",
-      borderColor: theme.theme === Theme.DARK ? "#fff" : "#4F4F4F",
+      backgroundColor: theme.theme === Theme.DARK ? "#0000005e" : "#ffffff5e",
+      borderColor: theme.theme === Theme.DARK ? "#ffffff" : "#4F4F4F",
       transition: 0,
       minWidth: "220px",
     }),
@@ -78,14 +77,14 @@ export const ExtraInfo: React.FC = React.memo(() => {
       styles?: StylesConfig<string, false, GroupBase<string>> | undefined
     ) => ({
       ...styles,
-      color: theme.theme === Theme.DARK ? "#fff" : "#000",
+      color: theme.theme === Theme.DARK ? "#ffffff" : "#000000",
     }),
     menu: (
       styles?: StylesConfig<string, false, GroupBase<string>> | undefined
     ) => ({
       ...styles,
-      color: theme.theme === Theme.DARK ? "#fff" : "#000",
-      backgroundColor: theme.theme === Theme.DARK ? "#4F4F4F" : "#fff",
+      color: theme.theme === Theme.DARK ? "#ffffff" : "#000000",
+      backgroundColor: theme.theme === Theme.DARK ? "#0000005e" : "#ffffff5e",
     }),
   };
 
@@ -103,10 +102,10 @@ export const ExtraInfo: React.FC = React.memo(() => {
           />
         </div>
         {weatherInfo.map((item: WeatherInfoTypes, index: number) => (
-          <ExtraInfoList weatherInfo={item} key={index} />
+          <ExtraInfoDesc weatherInfo={item} key={index} />
         ))}
       </div>
-      <img className={s.cloudImg} src={cloud} alt="облако" />
+      {/* <img className={s.cloudImg} src={cloud} alt="облако" /> */}
     </div>
   );
 });

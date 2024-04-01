@@ -1,49 +1,35 @@
 @import "../../styles/variables.scss";
 
-.days {
-  display: flex;
-  flex-wrap: wrap;
-  text-align: left;
-  padding: 8px;
-  width: 100%;
-}
 
-@media (max-width: 393px) {
-  .days {
-    justify-content: center;
-  }
-}
-
-.skelet{
-  margin: 14px;
-  width: 140px;
-  height: 212px;
-  background: var(#{--card-background-default});
-  border-radius: 10px;
-  padding: 10px;
-}
 
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: var(#{--card-background-default});
+  background: var(#{--components-background-default});
   border-radius: 10px;
+  border: var(#{--border-background-default});
   padding: 10px;
-  margin: 6px;
+  // margin: 6px;
   width: 140px;
   height: 212px;
-  transition: 0.3s;
   cursor: pointer;
+  
+  &:hover {
+    box-shadow: var(#{--card-shadow-default});
+    transition: all .3s;
+  }
   .info {
     font-size: 13px;
     line-height: 16px;
-    color: $base-color;
+    color: var(#{--text-color-default});
   }
   .tt{
     position: absolute;
     top: 8px;
+    font-size: 12px;
+    color: var(#{--text-color-default});
   }
 
   .curentDay {
@@ -73,7 +59,4 @@
     margin-bottom: 60px;
   }
 
-  &:hover {
-    box-shadow: var(#{--card-shadow-default});
-  }
 }

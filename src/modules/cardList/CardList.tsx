@@ -1,6 +1,6 @@
 import React from "react";
-import s from "./Card.module.scss";
-import { Card } from "./Card";
+import s from "./CardLst.module.scss";
+import { Card } from "../../components/card/Card";
 import { useCustomDispatch, useCustomSelector } from "../../hooks/store";
 import { selectWeatherData } from "../../redux/selectors";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -31,13 +31,15 @@ export const CardList: React.FC = React.memo(() => {
       <>
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={0}
+          spaceBetween={34}
           slidesPerView={7}
           touchRatio={1}
           touchAngle={45}
           grabCursor={true}
           draggable={true}
           onSlideChange={() => console.log("slide change")}
+          setWrapperSize={true}
+          centerInsufficientSlides={true}
           navigation
           breakpoints={{
             1180: {
@@ -52,7 +54,7 @@ export const CardList: React.FC = React.memo(() => {
             680: {
               slidesPerView: 4,
             },
-            520: {
+            480: {
               slidesPerView: 3,
             },
             380: {
@@ -67,7 +69,7 @@ export const CardList: React.FC = React.memo(() => {
             ? data.forecast.forecastday.map((dayInfo: DayInfoTypes, id: number) => (
                 <SwiperSlide key={id}>
                   <div className={s.days} key={id}>
-                    <Card dayInfo={dayInfo} key={id} />
+                    <Card dayInfo={dayInfo} key={id} dayId={id}/>
                   </div>
                 </SwiperSlide>
               ))

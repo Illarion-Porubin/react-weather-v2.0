@@ -6,6 +6,7 @@
   background: var(#{--components-background-default});
   box-shadow: $box-shadow;
   border-radius: $border-radius;
+  border: var(#{--border-background-default});
   margin-right: 20px;
 }
 
@@ -36,12 +37,12 @@
   color: $base-color;
   font-size: 18px;
   line-height: 14px;
+  color: var(#{--text-color-default});
 }
 
 @media (max-width: 800px) {
   .thisDay {
     width: 100%;
-    // margin-bottom: 20px;
   }
 }
 

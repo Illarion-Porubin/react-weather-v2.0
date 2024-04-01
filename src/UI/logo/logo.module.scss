@@ -1,0 +1,17 @@
+.logo {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.logo {
+    svg {
+        width: 65px;
+        height: 65px;
+    }
+}
+
+@media (max-width: 420px) {
+    .logo {
+        display: none;
+    }
+}

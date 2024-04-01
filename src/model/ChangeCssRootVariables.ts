@@ -5,6 +5,7 @@ export function changeCssRootVariables(theme: Theme ) {
 
   const components = [
     `body-background`,
+    `border-background`,
     `components-background`,
     `card-background`,
     `card-shadow`,

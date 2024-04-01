@@ -1,15 +1,15 @@
-import { Main } from "./pages/Main/Main";
+import { Error } from "./pages/error/Error";
+import { Main } from "./pages/main/Main";
 import { Route, Routes } from "react-router-dom";
 
 
 const App = () => {
   
   return (
-    <div className="container">
     <Routes>
       <Route path="/" element={<Main />} />
+      <Route path="*" element={<Error />} />
     </Routes>
-  </div>
   );
 };
 
