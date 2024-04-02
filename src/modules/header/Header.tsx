@@ -6,6 +6,7 @@ import { useCustomDispatch } from "../../hooks/store";
 import { fetchFindCity } from "../../redux/slices/weatherSlice";
 import { CustomInput } from "../../UI/input/customInput";
 import { Logo } from "../../UI/logo/logo";
+import { Link } from "react-router-dom";
 
 interface Props {}
 
@@ -23,9 +24,9 @@ export const Header: React.FC<Props> = React.memo(() => {
 
   return (
     <header className={s.header}>
-      <div className={s.wrapperLogo}>
+      <Link to="/" className={s.wrapperLogo}>
         <Logo />
-      </div>
+      </Link>
       <div className={s.wrapper}>
         <div className={s.changeTheme} onClick={changeTheme}>
           <svg

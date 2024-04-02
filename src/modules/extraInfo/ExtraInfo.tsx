@@ -105,7 +105,6 @@ export const ExtraInfo: React.FC = React.memo(() => {
           <ExtraInfoDesc weatherInfo={item} key={index} />
         ))}
       </div>
-      {/* <img className={s.cloudImg} src={cloud} alt="облако" /> */}
     </div>
   );
 });
