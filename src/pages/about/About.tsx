@@ -66,10 +66,10 @@ export const About: React.FC = React.memo(() => {
                       MySql, Sequelize, Passport-google-oauth20 и т.д.
                     </p>
                     <p className={s.text}>
-                      Не пугаюсь таких терминов как: OOP, SOLID, KISS, DRY.
+                      Не пугаюсь таких аббревиатур как: OOP, SOLID, KISS, DRY, SPA, PWA, SSR.
                     </p>
                     <p className={s.text}>
-                      Могу рассказать за: React, Redux, Redux Toolkit, Axios, SQL, MongoDB,
+                      Могу рассказать про: React, Redux, Redux Toolkit, Axios, SQL, MongoDB,
                       Sequelize и ещё много полезных штук.
                     </p>
                     <p className={s.text}>Буду рад с вами сотрудничать.</p>
