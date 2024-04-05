@@ -30,7 +30,7 @@ export const useWeather = () => {
   const weatherHour: WeatherHourTypes = {
     hourList: weatherInfo ? weatherInfo.hour.map((hour, id: number) => {
       return { value: id, label: hour.time.slice(-5) }
-    }) : [{ value: 0, label: 'задать время' }],
+    }) : [{ value: 0, label: 'Задать время' }],
 
     temp: weatherInfo ? Math.round(weatherInfo.hour[id].temp_c) : 0,
     pressure: weatherInfo ? Math.round(weatherInfo.hour[id].pressure_mb) : 0,

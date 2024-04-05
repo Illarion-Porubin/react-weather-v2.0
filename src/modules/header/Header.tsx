@@ -28,6 +28,7 @@ export const Header: React.FC<Props> = React.memo(() => {
         <Logo />
       </Link>
       <div className={s.wrapper}>
+        <Link className={s.about} to="/about">About</Link>
         <div className={s.changeTheme} onClick={changeTheme}>
           <svg
             width="24"

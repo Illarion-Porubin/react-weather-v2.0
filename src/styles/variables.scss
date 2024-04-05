@@ -23,6 +23,10 @@ $card-background-light: rgba(71, 147, 255, 0.2);
 $card-box-shadow-dark: 0px 2px 10px rgba(147, 144, 144, 0.28);
 $card-box-shadow-light: 0px 2px 10px rgba(5, 5, 5, 0.28);
 
+$dop-color-text-dark: #cccccc;
+$dop-color-text-light: #2a2a2a;
+
+
 
 :root {
   //body-background
@@ -53,4 +57,9 @@ $card-box-shadow-light: 0px 2px 10px rgba(5, 5, 5, 0.28);
   --text-color-dark: #{$dark-theme};
   --text-color-light: #{$light-theme};
   --text-color-default: var(--text-color-light);
+
+  //dop-color-text
+  --dop-color-text-dark: #{$dop-color-text-dark};
+  --dop-color-text-light: #{$dop-color-text-light};
+  --dop-color-text-default: var(--dop-color-text-light);
 }

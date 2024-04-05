@@ -13,6 +13,7 @@
   border-radius: 4px;
   padding-left: 4px;
   padding-right: 50px;
+  color:var(#{--text-color-default});
   &::-webkit-input-placeholder {
     color: var(#{--text-color-default});
   }

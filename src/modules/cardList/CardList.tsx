@@ -37,7 +37,6 @@ export const CardList: React.FC = React.memo(() => {
           touchAngle={45}
           grabCursor={true}
           draggable={true}
-          onSlideChange={() => console.log("slide change")}
           setWrapperSize={true}
           centerInsufficientSlides={true}
           navigation

@@ -8,6 +8,12 @@
   padding: 15px 0;
 }
 
+.about{
+  font-size: 18px;
+  margin-right: 10px;
+  color: #fff;
+}
+
 .wrapper,
 .wrapperLogo {
   display: flex;
@@ -28,6 +34,12 @@
 
 @media (max-width: 560px) {
   .title {
+    display: none;
+  }
+}
+
+@media (max-width: 340px) {
+  .about {
     display: none;
   }
 }

@@ -6,23 +6,26 @@
   margin-bottom: 20px;
 }
 
-.bgWeatherImage{
+.bgWeatherImage {
   width: 100%;
-  height: 100vh;
-  background-image: url("../../assets/jpg/Earth.jpg");
+  height: 100dvh;
+  background-image: url("../../assets/jpg/Earth3-min.jpg");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: cover;
-  z-index: 2;
 }
 
-@media(max-width: 800px) {
+@media (max-width: 800px) {
   .bgWeatherImage {
     height: auto;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
 
-@media(max-width: 580px) {
+@media (max-width: 580px) {
   .wrapper {
     display: block;
   }

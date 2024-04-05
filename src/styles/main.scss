@@ -11,7 +11,12 @@
 body {
   position: relative;
   font-family: 'Montserrat', sans-serif;
-  // background: var(--body-background-default);
+
+  background: var(#{--components-background-default});
+}
+
+a {
+  text-decoration: none
 }
 
 .container {
