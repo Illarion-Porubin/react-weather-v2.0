@@ -27,57 +27,61 @@ export const CardList: React.FC = React.memo(() => {
 
   const fakeArray = new Array(10).fill(" ");
 
-    return (
-      <>
-        <Swiper
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={34}
-          slidesPerView={7}
-          touchRatio={1}
-          touchAngle={45}
-          grabCursor={true}
-          draggable={true}
-          setWrapperSize={true}
-          centerInsufficientSlides={true}
-          navigation
-          breakpoints={{
-            1180: {
-              slidesPerView: 7,
-            },
-            980: {
-              slidesPerView: 6,
-            },
-            800: {
-              slidesPerView: 5,
-            },
-            680: {
-              slidesPerView: 4,
-            },
-            480: {
-              slidesPerView: 3,
-            },
-            380: {
-              slidesPerView: 2,
-            },
-            100: {
-              slidesPerView: 1,
-            },
-          }}
-        >
-          {data?.forecast
-            ? data.forecast.forecastday.map((dayInfo: DayInfoTypes, id: number) => (
+  return (
+    <>
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={34}
+        slidesPerView={7}
+        touchRatio={1}
+        touchAngle={45}
+        grabCursor={true}
+        draggable={true}
+        setWrapperSize={true}
+        centerInsufficientSlides={true}
+        navigation
+        breakpoints={{
+          1180: {
+            slidesPerView: 7,
+          },
+          980: {
+            slidesPerView: 6,
+          },
+          800: {
+            slidesPerView: 5,
+          },
+          680: {
+            slidesPerView: 4,
+          },
+          480: {
+            slidesPerView: 3,
+          },
+          380: {
+            slidesPerView: 2,
+          },
+          100: {
+            slidesPerView: 1,
+          },
+        }}
+      >
+        {data?.forecast
+          ? data.forecast.forecastday.map(
+              (dayInfo: DayInfoTypes, id: number) => (
                 <SwiperSlide key={id}>
                   <div className={s.days} key={id}>
-                    <Card dayInfo={dayInfo} key={id} dayId={id}/>
+                    <Card dayInfo={dayInfo} key={id} dayId={id} />
                   </div>
                 </SwiperSlide>
-              ))
-            : fakeArray.map((_, id: number) => (
-                <SwiperSlide key={id}>
+              )
+            )
+          : fakeArray.map((_, id: number) => (
+              <SwiperSlide key={id}>
+                <div className={s.days} key={id}>
                   <div className={s.skelet} key={id}></div>
-                </SwiperSlide>
-              ))}
-        </Swiper>
-      </>
-    );
+                </div>
+              </SwiperSlide>
+            ))}
+      </Swiper>
+    </>
+  );
 });
