@@ -15,7 +15,7 @@ export const Header: React.FC<Props> = React.memo(() => {
   const theme = useTheme();
 
   const changeTheme = React.useCallback((): void => {
-    theme.changeTheme(theme.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
+    theme.changeTheme(theme.theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
   }, [theme]);
 
   const findCity = (value: string) => {

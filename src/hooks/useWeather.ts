@@ -1,6 +1,6 @@
+import React from "react";
 import { useCustomSelector } from "./store";
 import { selectWeatherData } from "../redux/selectors";
-import React from "react";
 
 interface WeatherDayTypes {
   sunrise: string;

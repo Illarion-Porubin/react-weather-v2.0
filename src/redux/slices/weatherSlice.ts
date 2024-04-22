@@ -3,7 +3,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { DataTypes, DayInfoTypes, WeekTypes } from '../../tipes';
 
 
-
 type weatherSliceTypes = {
   data: DataTypes | null,
   weatherInfo: DayInfoTypes | null,
@@ -13,17 +12,19 @@ type weatherSliceTypes = {
   isLoading: 'idle' | 'loaded' | 'loading' | 'error'
 }
 
+const API_KEY = 'f2ca0ee5334c4a3eb0784743242204';
+
 export const fetchFindCity = createAsyncThunk<DataTypes, void | string, { rejectValue: string }
 >("api/findByName", async (value, { rejectWithValue }) => {
   if (value) {
-    const { data } = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=258cd37c6560484eafb182142242103&q=${value}&days=7&aqi=no&alerts=no`);
+    const { data } = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${value}&days=10&aqi=no&alerts=no`);
     if (!data) {
       rejectWithValue("error fetchFindCity")
     }
     return data
   }
   else {
-    const { data } = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=258cd37c6560484eafb182142242103&q=Новороссийск&days=7&aqi=no&alerts=no`);
+    const { data } = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=Новороссийск&days=10&aqi=no&alerts=no`);
     if (!data) {
       rejectWithValue("error fetchFindCity")
     }

@@ -15,9 +15,9 @@
   background-size: cover;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 800px)  {
   .bgWeatherImage {
-    height: auto;
+    height: 100%;
     padding-bottom: 20px;
   }
 }
