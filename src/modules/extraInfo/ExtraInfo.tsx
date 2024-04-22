@@ -65,7 +65,7 @@ export const ExtraInfo: React.FC = React.memo(() => {
       backgroundColor: theme.theme === Theme.DARK ? "#0000005e" : "#ffffff5e",
       borderColor: theme.theme === Theme.DARK ? "#ffffff" : "#4F4F4F",
       transition: 0,
-      minWidth: "220px",
+      minWidth: "200px",
     }),
     container: (
       styles?: StylesConfig<string, false, GroupBase<string>> | undefined
