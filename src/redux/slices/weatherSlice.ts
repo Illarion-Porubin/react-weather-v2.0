@@ -12,7 +12,7 @@ type weatherSliceTypes = {
   isLoading: 'idle' | 'loaded' | 'loading' | 'error'
 }
 
-const API_KEY = 'f2ca0ee5334c4a3eb0784743242204';
+const API_KEY = 'cf47281d76cf4c43949102612243105';
 
 export const fetchFindCity = createAsyncThunk<DataTypes, void | string, { rejectValue: string }
 >("api/findByName", async (value, { rejectWithValue }) => {
